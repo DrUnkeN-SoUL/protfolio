@@ -2,6 +2,7 @@ import { Scrambler } from './scrambler.js';
 import { Terminal } from './terminal.js';
 import { initParticles } from './particles.js';
 import { initCursor } from './cursor.js';
+import { initCracks } from './cracks.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -338,5 +339,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Skills categories
   initAccordion('.skills-toggle', true);
+
+  // Spark/crack effects on click
+  initCracks();
 
 });

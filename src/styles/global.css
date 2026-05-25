@@ -61,6 +61,16 @@
 /* ── Reset ─────────────────────────────────────────────────── */
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 
+::selection {
+  background: var(--ac) !important;
+  color: var(--bg) !important;
+}
+
+::-moz-selection {
+  background: var(--ac) !important;
+  color: var(--bg) !important;
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -406,7 +416,7 @@ section { padding: 7.5rem 0 3.5rem; }
 
 #custom-cursor.clicking {
   width: 6px; height: 6px;
-  background: var(--tx-1);
+  background: var(--ac);
 }
 
 /* ── Canvas / Cursor Glow ──────────────────────────────────── */

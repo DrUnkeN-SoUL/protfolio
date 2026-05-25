@@ -26,7 +26,9 @@
                 <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
                 <div>
                   <div class="contact-label">Email</div>
-                  <div class="contact-val" id="email-text">mathewsshaji@gmail.com</div>
+                  <div class="contact-val" id="email-text">
+                    <a href="mailto:mathewsshaji@gmail.com">mathewsshaji@gmail.com</a>
+                  </div>
                 </div>
               </div>
               <button class="copy-btn" id="copy-email-btn" aria-label="Copy email"><i class="fa-regular fa-copy"></i></button>
@@ -36,7 +38,7 @@
                 <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
                 <div>
                   <div class="contact-label">LinkedIn</div>
-                  <div class="contact-val"><a href="https://linkedin.com/in/mathews-shaji" target="_blank" rel="noopener" style="color:var(--hi)">linkedin.com/in/mathews-shaji</a></div>
+                  <div class="contact-val"><a href="https://linkedin.com/in/mathews-shaji" target="_blank" rel="noopener">linkedin.com/in/mathews-shaji</a></div>
                 </div>
               </div>
             </div>
@@ -45,7 +47,7 @@
                 <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
                 <div>
                   <div class="contact-label">GitHub</div>
-                  <div class="contact-val"><a href="https://github.com/DrUnkeN-SoUL" target="_blank" rel="noopener" style="color:var(--hi)">github.com/DrUnkeN-SoUL</a></div>
+                  <div class="contact-val"><a href="https://github.com/DrUnkeN-SoUL" target="_blank" rel="noopener">github.com/DrUnkeN-SoUL</a></div>
                 </div>
               </div>
             </div>
@@ -226,71 +228,118 @@
     letter-spacing: .06em;
   }
 
-  .contact-channels { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.75rem; }
+  .contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 1.75rem;
+    border-top: 1px solid var(--bd);
+  }
 
   .contact-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--bg);
-    border: 1px solid var(--bd);
-    padding: 1rem 1.25rem;
-    transition: border-color .3s var(--ease), background .3s var(--ease), transform .2s var(--ease);
-    min-height: 60px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--bd);
+    padding: .85rem .5rem;
+    transition: background .2s var(--ease);
+    min-height: 54px;
   }
   .contact-row:hover {
-    border-color: var(--bd-ac);
-    background: var(--ac-10);
-    transform: translateY(-1px);
+    background: rgba(255,255,255,.015);
   }
 
-  .contact-info { display: flex; align-items: center; gap: .9rem; }
-  .contact-icon { font-size: .85rem; color: var(--ac-dim); flex-shrink: 0; }
+  .contact-info { display: flex; align-items: center; gap: 1rem; }
+  .contact-icon { font-size: .8rem; color: var(--ac-dim); flex-shrink: 0; transition: color .2s var(--ease); }
   .contact-label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: .54rem;
-    color: var(--tx-3);
+    font-size: .55rem;
+    color: var(--ac-dim);
     text-transform: uppercase;
-    letter-spacing: .14em;
-    margin-bottom: .2rem;
+    letter-spacing: .12em;
+    margin-bottom: .05rem;
   }
   .contact-val {
-    font-family: 'DM Sans', sans-serif;
-    font-size: .9rem;
-    color: var(--tx-1);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .82rem;
+    color: var(--tx-2);
     font-weight: 400;
     word-break: break-all;
+    transition: color .2s var(--ease);
+  }
+
+  /* Sleek Interactive Links inside Contact Card */
+  .contact-val a {
+    color: var(--tx-2);
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    transition: color .2s var(--ease);
+  }
+  .contact-val a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--ac);
+    transition: width .2s var(--ease);
+  }
+  .contact-val a:hover {
+    color: var(--ac);
+  }
+  .contact-val a:hover::after {
+    width: 100%;
+  }
+
+  /* Micro-interactions when hovering over the parent contact row */
+  .contact-row:hover .contact-icon {
+    color: var(--ac);
+  }
+  .contact-row:hover .contact-val {
+    color: var(--tx-1);
+  }
+  .contact-row:hover .contact-val a {
+    color: var(--ac);
+  }
+  .contact-row:hover .contact-val a::after {
+    width: 100%;
+  }
+  .contact-row:hover .copy-btn {
+    color: var(--tx-2);
+    border-color: var(--bd);
   }
 
   @media (max-width: 480px) {
-    .contact-val { font-size: .82rem; }
+    .contact-val { font-size: .76rem; }
   }
 
   .copy-btn {
-    width: 36px; height: 36px;
+    width: 30px; height: 30px;
     background: transparent;
-    border: 1px solid var(--bd);
+    border: 1px solid transparent;
     color: var(--tx-3);
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    font-size: .75rem;
+    font-size: .65rem;
     transition: all .2s var(--ease);
     flex-shrink: 0;
-    min-width: 44px;
-    min-height: 44px;
   }
-  .copy-btn:hover { color: var(--ac); border-color: var(--bd-ac); }
+  .copy-btn:hover { color: var(--ac) !important; border-color: var(--ac) !important; background: var(--ac-10) !important; }
   .copy-btn.copied { color: var(--ac); border-color: var(--ac); background: var(--ac-10); }
 
   .social-links { display: flex; gap: .5rem; flex-wrap: wrap; }
 
   .social-btn {
-    width: 44px; height: 44px;
+    width: 38px; height: 38px;
     background: transparent;
     border: 1px solid var(--bd);
     display: flex; align-items: center; justify-content: center;
-    font-size: .88rem;
-    color: var(--tx-3);
+    font-size: .8rem;
+    color: var(--tx-2);
     transition: all .25s var(--ease);
   }
   .social-btn:hover { color: var(--ac); border-color: var(--bd-ac); transform: translateY(-1px); }
