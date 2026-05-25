@@ -1,0 +1,695 @@
+---
+---
+
+<section id="experience">
+  <div class="container">
+    <!-- MOBILE HEADERS -->
+    <div class="exp-mobile-headers">
+      <div class="section-rule-header reveal">
+        <span class="section-rule-num">// 01 — Experience</span>
+        <span class="section-rule-line"></span>
+      </div>
+      <div class="section-header reveal" style="margin-bottom:2rem">
+        <div class="section-title-wrapper">
+          <h2 class="section-title">Professional <em>Journey</em></h2>
+          <div class="section-title-line"></div>
+        </div>
+        <p class="section-subtitle">Engineering high-performance SaaS platforms, distributed workloads, and warehouse automations.</p>
+      </div>
+    </div>
+
+    <!-- DESKTOP: Sticky panel -->
+    <div class="exp-desktop" id="exp-desktop">
+      <div class="exp-sticky-panel">
+        <div class="exp-progress-bar" id="exp-progress"></div>
+
+        <div class="exp-sticky-header">
+          <div class="section-rule-header" style="margin-bottom: 1.25rem;">
+            <span class="section-rule-num">// 01 — Experience</span>
+            <span class="section-rule-line"></span>
+          </div>
+          <div class="section-header" style="margin-bottom: 0;">
+            <div class="section-title-wrapper">
+              <h2 class="section-title">Professional <em>Journey</em></h2>
+              <div class="section-title-line"></div>
+            </div>
+            <p class="section-subtitle">Engineering high-performance SaaS platforms, distributed workloads, and warehouse automations.</p>
+          </div>
+        </div>
+
+        <div class="exp-content-row">
+          <div class="exp-sidebar">
+            <div class="exp-sidebar-item active" data-exp="exotic" id="esb-exotic">
+              <div class="exp-sidebar-year">2024 — Present</div>
+              <div class="exp-sidebar-role">Contract Full-Stack Dev</div>
+              <div class="exp-sidebar-co">Exotic Green · Austria</div>
+            </div>
+            <div class="exp-sidebar-item" data-exp="cp" id="esb-cp">
+              <div class="exp-sidebar-year">Nov 2023 — Present</div>
+              <div class="exp-sidebar-role">Backend Engineer</div>
+              <div class="exp-sidebar-co">CloudPositive</div>
+            </div>
+            <div class="exp-sidebar-item" data-exp="xmig" id="esb-xmig">
+              <div class="exp-sidebar-year">Jun 2023 — Nov 2023</div>
+              <div class="exp-sidebar-role">Full-Stack Developer</div>
+              <div class="exp-sidebar-co">Xmigrate</div>
+            </div>
+            <div class="exp-sidebar-item" data-exp="intern" id="esb-intern">
+              <div class="exp-sidebar-year">May 2023 — Jun 2023</div>
+              <div class="exp-sidebar-role">Web Developer Intern</div>
+              <div class="exp-sidebar-co">Xmigrate</div>
+            </div>
+          </div>
+
+          <div class="exp-main-wrap">
+            <div class="exp-detail active" id="exp-exotic">
+              <p class="exp-detail-quote">“Sole developer. Zero hand-holding. Full ownership from database schema to CI/CD pipeline — and a production rewrite in Next.js 16 mid-contract.”</p>
+              <div class="exp-detail-header">
+                <div class="exp-detail-role">Contract Full-Stack Developer <span class="exp-now-badge">NOW</span></div>
+                <div class="exp-detail-meta">
+                  <span class="exp-detail-co">Exotic Green — Austria</span>
+                  <span class="exp-detail-date">2024 – Present</span>
+                  <span class="exp-detail-type">Remote · Contract · Sole Developer</span>
+                </div>
+              </div>
+              <ul class="exp-list">
+                <li>Sole developer for a full-stack warehouse management platform built for an Austrian supermarket chain.</li>
+                <li>FastAPI backend with inventory management, batch/best-before tracking, compliance protocols, and APScheduler-based auto-logger (cron, exponential backoff, Austrian timezone, graceful degradation).</li>
+                <li>Next.js 14 frontend with webcam barcode scanning (zxing), PDF report generation, and AWS Cognito OAuth2 + email/password auth with role-based route protection.</li>
+                <li>Led complete v2 redesign in Next.js 16 — introduced Vitest unit tests, Playwright E2E suites, and web-vitals monitoring (LCP, FID, CLS, FCP, TTFB) from scratch.</li>
+                <li>Containerised full platform (FastAPI, Next.js, PostgreSQL, Redis) with Docker Compose for dev and production.</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="tech-badge">Python</span><span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Next.js 14/16</span><span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">PostgreSQL</span><span class="tech-badge">Redis</span>
+                <span class="tech-badge">AWS Cognito</span><span class="tech-badge">shadcn/ui</span>
+                <span class="tech-badge">Tailwind CSS</span><span class="tech-badge">Docker</span>
+                <span class="tech-badge">Vitest</span><span class="tech-badge">Playwright</span>
+              </div>
+            </div>
+
+            <div class="exp-detail" id="exp-cp">
+              <p class="exp-detail-quote">“Owned the entire backend of a multi-cloud cost governance SaaS — 20+ ingestion pipelines, secretless onboarding across AWS, GCP, and Azure, and an AI cost-estimation proof of concept.”</p>
+              <div class="exp-detail-header">
+                <div class="exp-detail-role">Backend Engineer <span class="exp-now-badge">NOW</span></div>
+                <div class="exp-detail-meta">
+                  <span class="exp-detail-co">CloudPositive — Pre-Launch Startup</span>
+                  <span class="exp-detail-date">Nov 2023 – Present</span>
+                  <span class="exp-detail-type">Remote</span>
+                </div>
+              </div>
+              <ul class="exp-list">
+                <li>Architected multi-tenant FastAPI backend with dynamic per-tenant MySQL schema isolation and role-specific dashboards.</li>
+                <li>Designed a data ingestion engine with 20+ modular pipelines (AWS Cost Explorer, GCP BigQuery, Azure Cost Management) orchestrated via SQS.</li>
+                <li>Engineered secretless multi-cloud onboarding: IAM trust roles (AWS), minimal service accounts (GCP), Azure AD OAuth consent flows generating service principals via ARM templates.</li>
+                <li>Built multi-cloud account validation service (AWS, GCP BigQuery, Azure RBAC) deployed with Docker and Terraform.</li>
+                <li>Real-time alerting module with OpenSearch monitors, configurable thresholds, and Slack/Webhook channels.</li>
+                <li>GCP pre-onboarding validator deployed on Kubernetes with Helm chart.</li>
+                <li>AI cost estimation API using OpenAI GPT-4o-mini with structured JSON, multi-step pipeline (QueryParser → Validator → PromptEnhancer → OutputValidator).</li>
+                <li>Microservices on AWS ECS with RDS MySQL, SQS, and OpenSearch; provisioned with Terraform and Ansible playbooks.</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="tech-badge">Python</span><span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">SQLAlchemy</span><span class="tech-badge">AWS ECS/SQS/Lambda</span>
+                <span class="tech-badge">GCP BigQuery</span><span class="tech-badge">Azure ARM</span>
+                <span class="tech-badge">MySQL</span><span class="tech-badge">OpenSearch</span>
+                <span class="tech-badge">Terraform</span><span class="tech-badge">Kubernetes</span>
+                <span class="tech-badge">Helm</span><span class="tech-badge">Ansible</span>
+                <span class="tech-badge">OpenAI SDK</span>
+              </div>
+            </div>
+
+            <div class="exp-detail" id="exp-xmig">
+              <p class="exp-detail-quote">“Contributed to a live VM migration SaaS — FastAPI backend (27+ modules), Keycloak SSO, React Flow topology dashboards, and a polished PDF-invoicing frontend deployed on Cloudflare.”</p>
+              <div class="exp-detail-header">
+                <div class="exp-detail-role">Full-Stack Developer</div>
+                <div class="exp-detail-meta">
+                  <span class="exp-detail-co">Xmigrate</span>
+                  <span class="exp-detail-date">Jun 2023 – Nov 2023</span>
+                  <span class="exp-detail-type">Remote</span>
+                </div>
+              </div>
+              <ul class="exp-list">
+                <li>FastAPI backend: org/project/blueprint management, target cloud config (AWS/Azure/GCP/OCI), agent registration, action lifecycle, billing modules.</li>
+                <li>Keycloak IAM: OAuth2/OIDC flows, SSO, custom themes, token exchange, PostgreSQL backend.</li>
+                <li>Next.js 14 dashboard with React Flow topology diagrams, ApexCharts/Chart.js visualisations, and Keycloak SSO integration.</li>
+                <li>Built polished SaaS frontend with Radix UI, TanStack Table, Framer Motion animations, and PDF invoice generation via react-pdf; deployed on Cloudflare.</li>
+                <li>Validated and tested live VM migration workflows end-to-end across cloud environments.</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="tech-badge">Python</span><span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">Next.js 14</span><span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">Keycloak</span><span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">React Flow</span><span class="tech-badge">Radix UI</span>
+                <span class="tech-badge">TanStack</span><span class="tech-badge">Framer Motion</span>
+                <span class="tech-badge">Cloudflare</span>
+              </div>
+            </div>
+
+            <div class="exp-detail" id="exp-intern">
+              <p class="exp-detail-quote">“First production code shipped. Built REST endpoints, mapped relational data models, and assisted API-frontend integration testing.”</p>
+              <div class="exp-detail-header">
+                <div class="exp-detail-role">Web Developer Intern</div>
+                <div class="exp-detail-meta">
+                  <span class="exp-detail-co">Xmigrate</span>
+                  <span class="exp-detail-date">May 2023 – Jun 2023</span>
+                  <span class="exp-detail-type">Remote · Internship</span>
+                </div>
+              </div>
+              <ul class="exp-list">
+                <li>Developed FastAPI endpoints for the cloud migration backend, mapped relational data models.</li>
+                <li>Contributed to API–frontend integration and end-to-end data flow validation.</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="tech-badge">Python</span><span class="tech-badge">FastAPI</span>
+                <span class="tech-badge">REST API</span><span class="tech-badge">Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE: Classic stacked timeline -->
+      <div class="exp-mobile">
+      <div class="timeline-container">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-content glass-card" id="exp-exotic-m">
+            <button class="timeline-toggle" aria-expanded="false" aria-controls="exp-exotic-m-body">
+              <div class="timeline-toggle-left">
+                <h3 class="timeline-role">Contract Full-Stack Developer</h3>
+                <div class="timeline-company">Exotic Green — Austria (Remote)</div>
+                <div class="timeline-preview-quote">“Sole developer. Zero hand-holding. Production Next.js 16 rewrite.”</div>
+              </div>
+              <div class="timeline-toggle-right">
+                <div class="timeline-meta">
+                  <div class="timeline-date">2024 – Present</div>
+                  <div class="timeline-loc">Sole Developer</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </div>
+            </button>
+            <div class="timeline-body" id="exp-exotic-m-body">
+              <ul class="timeline-list">
+                <li>Sole developer for a comprehensive warehouse management platform built for an Austrian supermarket chain.</li>
+                <li>FastAPI backend with APScheduler auto-compliance logger, exponential backoff, Austrian timezone handling.</li>
+                <li>Next.js 14 frontend with webcam barcode scanning, PDF reports, AWS Cognito auth; v2 in Next.js 16 with Vitest + Playwright.</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="tech-badge">FastAPI</span><span class="tech-badge">Next.js 16</span>
+                <span class="tech-badge">PostgreSQL</span><span class="tech-badge">Redis</span>
+                <span class="tech-badge">AWS Cognito</span><span class="tech-badge">Docker</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal reveal-d1">
+          <div class="timeline-content glass-card" id="exp-cp-m">
+            <button class="timeline-toggle" aria-expanded="false" aria-controls="exp-cp-m-body">
+              <div class="timeline-toggle-left">
+                <h3 class="timeline-role">Backend Engineer</h3>
+                <div class="timeline-company">CloudPositive — Pre-Launch Startup</div>
+                <div class="timeline-preview-quote">“Owned backend of multi-cloud cost governance SaaS.”</div>
+              </div>
+              <div class="timeline-toggle-right">
+                <div class="timeline-meta">
+                  <div class="timeline-date">Nov 2023 – Present</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </div>
+            </button>
+            <div class="timeline-body" id="exp-cp-m-body">
+              <ul class="timeline-list">
+                <li>Multi-tenant FastAPI backend with per-tenant MySQL schema isolation, 20+ ingestion pipelines via SQS.</li>
+                <li>Secretless multi-cloud onboarding (AWS IAM roles, GCP service accounts, Azure AD app registration + ARM templates).</li>
+                <li>AI cost estimation using OpenAI GPT-4o-mini; deployed microservices on AWS ECS with Terraform.</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="tech-badge">FastAPI</span><span class="tech-badge">AWS SQS/ECS</span>
+                <span class="tech-badge">GCP BigQuery</span><span class="tech-badge">Terraform</span><span class="tech-badge">OpenAI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal reveal-d2">
+          <div class="timeline-content glass-card">
+            <button class="timeline-toggle" aria-expanded="false" aria-controls="exp-xmig-m-body">
+              <div class="timeline-toggle-left">
+                <h3 class="timeline-role">Full-Stack Developer</h3>
+                <div class="timeline-company">Xmigrate (Remote)</div>
+                <div class="timeline-preview-quote">“Contributed to live VM migration SaaS & Keycloak SSO.”</div>
+              </div>
+              <div class="timeline-toggle-right">
+                <div class="timeline-meta">
+                  <div class="timeline-date">Jun 2023 – Nov 2023</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </div>
+            </button>
+            <div class="timeline-body" id="exp-xmig-m-body">
+              <ul class="timeline-list">
+                <li>FastAPI backend (27+ modules), Keycloak SSO, React Flow topology dashboards, PDF invoicing on Cloudflare.</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="tech-badge">FastAPI</span><span class="tech-badge">Next.js 14</span>
+                <span class="tech-badge">Keycloak</span><span class="tech-badge">Cloudflare</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal reveal-d3">
+          <div class="timeline-content glass-card">
+            <button class="timeline-toggle" aria-expanded="false" aria-controls="exp-intern-m-body">
+              <div class="timeline-toggle-left">
+                <h3 class="timeline-role">Web Developer Intern</h3>
+                <div class="timeline-company">Xmigrate (Remote)</div>
+                <div class="timeline-preview-quote">“First production code shipped. Relational schemas & APIs.”</div>
+              </div>
+              <div class="timeline-toggle-right">
+                <div class="timeline-meta">
+                  <div class="timeline-date">May 2023 – Jun 2023</div>
+                </div>
+                <svg class="timeline-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/></svg>
+              </div>
+            </button>
+            <div class="timeline-body" id="exp-intern-m-body">
+              <ul class="timeline-list">
+                <li>FastAPI endpoints, relational data models, API–frontend integration.</li>
+              </ul>
+              <div class="tech-badges">
+                <span class="tech-badge">Python</span><span class="tech-badge">FastAPI</span><span class="tech-badge">REST API</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .exp-sticky-panel {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--bg-1);
+    border: 1px solid var(--bd);
+  }
+
+  .exp-sticky-header {
+    padding: 2.25rem 2.5rem 1.25rem 2.5rem;
+    border-bottom: 1px solid var(--bd);
+    background: var(--bg-1);
+  }
+
+  .exp-content-row {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .exp-mobile-headers { display: none; }
+
+  @media (max-width: 1024px) {
+    .exp-mobile-headers { display: block; }
+  }
+
+  .exp-progress-bar {
+    position: absolute;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--ac);
+    width: 0%;
+    transition: width .1s linear;
+    z-index: 10;
+  }
+
+  .exp-sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    border-right: 1px solid var(--bd);
+    overflow-y: auto;
+    padding: 2rem 0;
+  }
+
+  .exp-sidebar-item {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    border-left: 2px solid transparent;
+    transition: border-color .25s var(--ease), background .25s var(--ease);
+  }
+  .exp-sidebar-item:hover { border-left-color: var(--ac-dim); }
+  .exp-sidebar-item.active {
+    border-left-color: var(--ac);
+    background: var(--ac-10);
+  }
+
+  .exp-sidebar-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .5rem;
+    color: var(--ac-dim);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: .25rem;
+  }
+  .exp-sidebar-item.active .exp-sidebar-year { color: var(--ac); }
+
+  .exp-sidebar-role {
+    font-family: 'Cormorant Garant', serif;
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--tx-2);
+    line-height: 1.2;
+  }
+  .exp-sidebar-item.active .exp-sidebar-role { color: var(--tx-1); }
+
+  .exp-sidebar-co {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .52rem;
+    color: var(--tx-3);
+    letter-spacing: .1em;
+    margin-top: .2rem;
+  }
+
+  .exp-now-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .45rem;
+    color: var(--ac);
+    border: 1px solid var(--bd-ac);
+    padding: 0 .35rem;
+    letter-spacing: .12em;
+    margin-left: .4rem;
+    vertical-align: middle;
+  }
+
+  .exp-main-wrap {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .exp-detail {
+    flex: 1;
+    padding: 2.5rem 3rem;
+    overflow-y: auto;
+    display: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @keyframes expFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .exp-detail.active {
+    display: block;
+    animation: expFadeIn .3s var(--ease) forwards;
+  }
+
+  .exp-detail-quote {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--tx-2);
+    border-left: 2px solid var(--ac);
+    padding-left: 1rem;
+    margin-bottom: 1.75rem;
+    line-height: 1.6;
+  }
+
+  .exp-detail-header { margin-bottom: 1.5rem; }
+
+  .exp-detail-role {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--tx-1);
+    line-height: 1;
+    margin-bottom: .35rem;
+  }
+
+  .exp-detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .exp-detail-co {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .62rem;
+    color: var(--ac-dim);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+  }
+
+  .exp-detail-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .58rem;
+    color: var(--tx-2);
+    background: var(--bg-2);
+    border: 1px solid var(--bd);
+    padding: .15rem .5rem;
+    letter-spacing: .06em;
+  }
+
+  .exp-detail-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .52rem;
+    color: var(--tx-3);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+
+  .exp-list {
+    list-style: none;
+    margin: 1.25rem 0 1.5rem;
+  }
+
+  .exp-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: .75rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .88rem;
+    color: var(--tx-2);
+    line-height: 1.7;
+    margin-bottom: .65rem;
+    font-weight: 300;
+  }
+
+  .exp-list li::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ac);
+    opacity: .45;
+    flex-shrink: 0;
+    margin-top: .55em;
+  }
+
+  /* Mobile: classic stacked timeline — collapsible */
+  .timeline-container {
+    max-width: 880px;
+    position: relative;
+    padding-left: 1.75rem;
+  }
+
+  .timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 0; top: .5rem; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--bd) 0%, var(--bd) 85%, transparent);
+  }
+
+  @media (max-width: 480px) {
+    .timeline-container { padding-left: 1.25rem; }
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 2.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    .timeline-item { padding-left: 1.5rem; margin-bottom: 1rem; }
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -3.5px; top: 1.5rem;
+    width: 8px; height: 8px;
+    background: var(--bg-3);
+    border: 1px solid var(--ac-dim);
+    transition: background .3s, border-color .3s;
+    z-index: 2;
+  }
+  .timeline-item:has(.timeline-toggle[aria-expanded="true"])::before {
+    background: var(--ac); border-color: var(--ac);
+  }
+
+  /* Remove padding from glass-card — the toggle button handles it */
+  .timeline-content { padding: 0; overflow: hidden; }
+
+  /* Toggle button — the always-visible header */
+  .timeline-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    -webkit-tap-highlight-color: transparent;
+    transition: background .2s var(--ease), transform .15s var(--ease);
+    min-height: 56px;
+  }
+ 
+  .timeline-toggle:hover { background: rgba(255,255,255,.02); }
+  .timeline-toggle:active { transform: scale(0.985); }
+  .timeline-toggle[aria-expanded="true"] { background: var(--ac-10); }
+ 
+  .timeline-toggle-left { flex: 1; min-width: 0; }
+  .timeline-toggle-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: .35rem;
+    flex-shrink: 0;
+  }
+ 
+  .timeline-chevron {
+    width: 18px; height: 18px;
+    color: var(--tx-3);
+    transition: transform .3s var(--ease), color .2s var(--ease);
+    flex-shrink: 0;
+  }
+  .timeline-toggle[aria-expanded="true"] .timeline-chevron {
+    transform: rotate(180deg);
+    color: var(--ac);
+  }
+ 
+  /* Collapsible body */
+  .timeline-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s cubic-bezier(.4,0,.2,1), opacity .3s var(--ease), padding .3s var(--ease);
+    opacity: 0;
+    padding: 0 1.5rem;
+  }
+  .timeline-body.open {
+    max-height: 600px;
+    opacity: 1;
+    padding: 0 1.5rem 1.4rem;
+  }
+ 
+  .timeline-role {
+    font-family: 'Cormorant Garant', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--tx-1);
+    margin-bottom: .25rem;
+    letter-spacing: -.01em;
+    line-height: 1.2;
+  }
+ 
+  .timeline-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .6rem;
+    color: var(--ac-dim);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+  }
+
+  .timeline-preview-quote {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .72rem;
+    color: var(--tx-3);
+    margin-top: .45rem;
+    font-style: italic;
+    transition: opacity .25s var(--ease), max-height .25s var(--ease), margin-top .25s var(--ease);
+    opacity: 1;
+    max-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 300;
+  }
+  .timeline-toggle[aria-expanded="true"] .timeline-preview-quote {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+  }
+
+  .timeline-meta { text-align: right; }
+
+  .timeline-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .58rem;
+    color: var(--tx-2);
+    background: var(--bg-2);
+    border: 1px solid var(--bd);
+    padding: .15rem .5rem;
+    display: inline-block;
+    letter-spacing: .06em;
+    white-space: nowrap;
+  }
+
+  .timeline-loc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .52rem;
+    color: var(--tx-3);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-top: .25rem;
+    text-align: right;
+  }
+
+  .timeline-list { list-style: none; margin: .75rem 0; }
+
+  .timeline-list li {
+    font-family: 'DM Sans', sans-serif;
+    padding-left: 1.3rem;
+    margin-bottom: .55rem;
+    color: var(--tx-2);
+    font-size: .88rem;
+    line-height: 1.68;
+    position: relative;
+    font-weight: 300;
+  }
+
+  .timeline-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0; top: .08em;
+    color: var(--ac-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .72rem;
+  }
+
+  .exp-desktop { display: flex; }
+  .exp-mobile  { display: none; }
+
+  @media (max-width:1024px) {
+    .exp-desktop { display: none; }
+    .exp-mobile  { display: block; }
+  }
+</style>

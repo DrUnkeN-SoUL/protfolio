@@ -1,0 +1,310 @@
+---
+---
+
+<header class="navbar" id="navbar">
+  <div class="container nav-container">
+    <a href="#home" class="logo" id="nav-logo">
+      <span class="logo-full">Mathews Shaji</span>
+      <span class="logo-short">M<span class="logo-dot"></span>S</span>
+    </a>
+
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home"       class="nav-link active" id="link-home">      <i class="fa-solid fa-house"></i>              <span>Home</span></a></li>
+        <li><a href="#experience" class="nav-link"        id="link-experience"><i class="fa-solid fa-timeline"></i>           <span>Journey</span></a></li>
+        <li><a href="#projects"   class="nav-link"        id="link-projects">  <i class="fa-solid fa-laptop-code"></i>        <span>Work</span></a></li>
+        <li><a href="#skills"     class="nav-link"        id="link-skills">    <i class="fa-solid fa-screwdriver-wrench"></i> <span>Stack</span></a></li>
+        <li><a href="#contact"    class="nav-link"        id="link-contact">   <i class="fa-solid fa-envelope"></i>           <span>Contact</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-selector-panel" id="theme-selector-panel">
+      <span class="theme-panel-label">// theme</span>
+      <div class="theme-btns">
+        <button class="theme-btn active" data-theme="mint">GOLD</button>
+        <button class="theme-btn"        data-theme="cyan">CYAN</button>
+        <button class="theme-btn"        data-theme="amber">EMBER</button>
+        <button class="theme-btn"        data-theme="mono">MONO</button>
+      </div>
+    </div>
+
+    <div class="nav-socials" id="nav-socials">
+      <a href="https://github.com/DrUnkeN-SoUL"       target="_blank" rel="noopener" aria-label="GitHub">  <i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/mathews-shaji" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<style>
+  .navbar { position: fixed; z-index: 200; }
+
+  @media (min-width:1025px) {
+    .navbar {
+      top: 0; left: 0;
+      width: var(--nav-w);
+      height: 100vh;
+      background: rgba(6,6,10,.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-right: 1px solid var(--bd);
+      display: flex;
+      flex-direction: column;
+    }
+    body { /* padding-left handled by global.css to prevent FOUC */ }
+  }
+
+  @media (max-width:1024px) {
+    .navbar {
+      top: 0; left: 0; right: 0;
+      height: 56px;
+      background: rgba(6,6,10,.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--bd);
+    }
+    /* body padding-top handled by global.css */
+  }
+
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    @media (max-width:1024px) {
+      .navbar { padding-top: env(safe-area-inset-top, 0px); }
+    }
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  @media (min-width:1025px) {
+    .nav-container {
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2rem 0 1.5rem;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media (max-width:1024px) {
+    .nav-container {
+      flex-direction: row;
+      padding: 0 1.25rem;
+      justify-content: space-between;
+    }
+  }
+
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .7rem;
+    font-weight: 700;
+    color: var(--ac);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-full  { display: none; }
+  .logo-short { display: flex; align-items: center; gap: 3px; }
+
+  @media (max-width:1024px) {
+    .logo-full  { display: block; font-size: .8rem; }
+    .logo-short { display: none; }
+  }
+
+  .logo-dot {
+    width: 3px; height: 3px;
+    background: var(--ac);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  nav {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-links { list-style: none; display: flex; }
+
+  @media (min-width:1025px) {
+    .nav-links {
+      flex-direction: column;
+      align-items: center;
+      gap: .15rem;
+      width: 100%;
+      padding: .5rem 0;
+    }
+  }
+
+  @media (max-width:1024px) {
+    .nav-links {
+      position: fixed;
+      top: 56px; left: 0; right: 0; bottom: 0;
+      background: rgba(6,6,10,.99);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      transform: translateX(-100%);
+      transition: transform .45s var(--ease-out);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    .nav-links.active { transform: translateX(0); }
+  }
+
+  .nav-link {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .58rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--tx-2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .22rem;
+    transition: color .25s;
+    position: relative;
+  }
+
+  @media (min-width:1025px) {
+    .nav-link {
+      width: 54px; height: 54px;
+      justify-content: center;
+      transition: color .25s var(--ease);
+    }
+    .nav-link i    { font-size: .95rem; transition: transform .25s var(--ease); }
+    .nav-link span { font-size: .5rem; }
+    .nav-link:hover { color: var(--ac); }
+    .nav-link:hover i { transform: scale(1.15); }
+    .nav-link.active { color: var(--ac); }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      left: -1px; top: 25%; height: 50%; width: 1px;
+      background: var(--ac);
+      opacity: .8;
+    }
+  }
+
+  @media (max-width:1024px) {
+    .nav-link {
+      flex-direction: row;
+      gap: .9rem;
+      font-size: .88rem;
+      letter-spacing: .1em;
+      padding: .75rem 2rem;
+      min-height: 48px;
+      align-items: center;
+    }
+    .nav-link i { font-size: 1.1rem; color: var(--ac); }
+    .nav-link:hover, .nav-link.active { color: var(--ac); }
+  }
+
+  .nav-socials {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+  }
+
+  @media (min-width:1025px) {
+    .nav-socials {
+      flex-direction: column;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--bd);
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width:1024px) { .nav-socials { display: none; } }
+
+  .nav-socials a {
+    font-size: .95rem;
+    color: var(--tx-3);
+    transition: color .2s, transform .2s;
+    display: flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-socials a:hover { color: var(--ac); transform: translateY(-1px); }
+
+  .theme-selector-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .35rem;
+    padding-top: .9rem;
+    border-top: 1px solid var(--bd);
+    width: 100%;
+  }
+
+  @media (max-width:1024px) { .theme-selector-panel { display: none; } }
+
+  .theme-panel-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .46rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--tx-3);
+  }
+
+  .theme-btns {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 16px);
+    gap: .2rem;
+  }
+
+  .theme-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--tx-3);
+    padding: .3rem 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .52rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s var(--ease);
+    text-align: center;
+    min-height: 36px;
+  }
+  .theme-btn:hover { color: var(--tx-2); border-color: var(--bd); }
+  .theme-btn.active { color: var(--ac); border-color: var(--bd-ac); background: var(--ac-10); }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+  @media (max-width:1024px) { .menu-toggle { display: flex; } }
+
+  .menu-toggle span {
+    width: 20px; height: 1px;
+    background: var(--tx-2);
+    transition: transform .3s var(--ease), opacity .2s;
+    display: block;
+  }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+</style>

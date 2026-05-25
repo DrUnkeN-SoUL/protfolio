@@ -1,0 +1,297 @@
+---
+---
+
+<section id="contact">
+  <div class="container">
+    <div class="section-rule-header reveal">
+      <span class="section-rule-num">// 04 — Connect</span>
+      <span class="section-rule-line"></span>
+    </div>
+    <div class="contact-card reveal" id="contact-card">
+      <div class="contact-glow-dot">
+        <span class="contact-pulse"></span>
+        Available for contracts &amp; full-time roles
+      </div>
+      <div class="contact-header">
+        <h2 class="contact-title">Have an idea? Let's build what's <em>next.</em></h2>
+        <p class="contact-desc">Ready to architect your backend systems, microservices, and cloud integrations. Open to contracts, full-time roles, and consulting worldwide.</p>
+      </div>
+
+      <div class="contact-body">
+        <div>
+          <span class="contact-col-label">// Direct channels</span>
+          <div class="contact-channels">
+            <div class="contact-row">
+              <div class="contact-info">
+                <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <div class="contact-label">Email</div>
+                  <div class="contact-val" id="email-text">mathewsshaji@gmail.com</div>
+                </div>
+              </div>
+              <button class="copy-btn" id="copy-email-btn" aria-label="Copy email"><i class="fa-regular fa-copy"></i></button>
+            </div>
+            <div class="contact-row">
+              <div class="contact-info">
+                <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                <div>
+                  <div class="contact-label">LinkedIn</div>
+                  <div class="contact-val"><a href="https://linkedin.com/in/mathews-shaji" target="_blank" rel="noopener" style="color:var(--hi)">linkedin.com/in/mathews-shaji</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-info">
+                <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
+                <div>
+                  <div class="contact-label">GitHub</div>
+                  <div class="contact-val"><a href="https://github.com/DrUnkeN-SoUL" target="_blank" rel="noopener" style="color:var(--hi)">github.com/DrUnkeN-SoUL</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-row">
+              <div class="contact-info">
+                <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <div class="contact-label">Location</div>
+                  <div class="contact-val">Kochi, Kerala, India</div>
+                </div>
+              </div>
+              <button class="copy-btn" id="copy-loc-btn" aria-label="Copy location"><i class="fa-regular fa-copy"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="contact-col-label">// Availability</span>
+          <div class="contact-availability">
+            <div class="contact-avail-row">
+              <span class="contact-avail-dot"></span>
+              Open to full-time remote roles
+            </div>
+            <div class="contact-avail-row">
+              <span class="contact-avail-dot"></span>
+              Available for contract projects
+            </div>
+            <div class="contact-avail-row">
+              <span class="contact-avail-dot orange"></span>
+              Consulting &amp; architecture review
+            </div>
+          </div>
+          <div class="contact-timezone">Timezone: IST (UTC +5:30) &nbsp;&middot;&nbsp; Response within 24 h</div>
+
+          <div style="margin-top:1.75rem;">
+            <span class="contact-col-label">// Stack fit</span>
+            <div style="display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.5rem;">
+              <span class="tech-badge">FastAPI</span>
+              <span class="tech-badge">Go</span>
+              <span class="tech-badge">Next.js</span>
+              <span class="tech-badge">AWS</span>
+              <span class="tech-badge">GCP</span>
+              <span class="tech-badge">Azure</span>
+              <span class="tech-badge">Terraform</span>
+              <span class="tech-badge">Kubernetes</span>
+              <span class="tech-badge">OpenAI</span>
+              <span class="tech-badge">Bedrock</span>
+            </div>
+          </div>
+
+          <div style="margin-top:1.75rem;">
+            <span class="contact-col-label">// Socials</span>
+            <div class="social-links" style="margin-top:.5rem;">
+              <a href="https://github.com/DrUnkeN-SoUL"       target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">  <i class="fa-brands fa-github"></i></a>
+              <a href="https://linkedin.com/in/mathews-shaji" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-card {
+    padding: 2.5rem 0;
+    max-width: 100%;
+    background: transparent;
+    border: none;
+  }
+  .contact-card:hover { transform: none; }
+
+  .contact-glow-dot {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .6rem;
+    color: var(--ac-dim);
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    margin-bottom: 2rem;
+  }
+
+  .contact-pulse {
+    width: 6px; height: 6px;
+    background: var(--ac);
+    border-radius: 50%;
+    animation: pulse 2.5s infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 var(--ac-10); }
+    50%      { box-shadow: 0 0 0 6px transparent; }
+  }
+
+  .contact-header { margin-bottom: 2rem; }
+
+  .contact-title {
+    font-family: 'Cormorant Garant', serif;
+    font-size: clamp(1.9rem, 5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -.03em;
+    color: var(--tx-1);
+    margin-bottom: .5rem;
+    line-height: 1.1;
+  }
+
+  .contact-title em { font-style: italic; color: var(--ac); }
+
+  .contact-desc {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .92rem;
+    color: var(--tx-2);
+    font-weight: 300;
+    max-width: 480px;
+    line-height: 1.75;
+  }
+
+  @media (max-width: 480px) {
+    .contact-desc { font-size: .88rem; max-width: 100%; }
+  }
+
+  .contact-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (max-width:768px) {
+    .contact-body { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .contact-col-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .55rem;
+    color: var(--ac-dim);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .contact-availability {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-avail-row {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .62rem;
+    color: var(--tx-2);
+    letter-spacing: .04em;
+  }
+
+  .contact-avail-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #28c840;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(40,200,64,.5);
+  }
+
+  .contact-avail-dot.orange { background: var(--ac); box-shadow: 0 0 6px rgba(201,169,110,.5); }
+
+  .contact-timezone {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .58rem;
+    color: var(--tx-2);
+    margin-top: 1rem;
+    letter-spacing: .06em;
+  }
+
+  .contact-channels { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.75rem; }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg);
+    border: 1px solid var(--bd);
+    padding: 1rem 1.25rem;
+    transition: border-color .3s var(--ease), background .3s var(--ease), transform .2s var(--ease);
+    min-height: 60px;
+  }
+  .contact-row:hover {
+    border-color: var(--bd-ac);
+    background: var(--ac-10);
+    transform: translateY(-1px);
+  }
+
+  .contact-info { display: flex; align-items: center; gap: .9rem; }
+  .contact-icon { font-size: .85rem; color: var(--ac-dim); flex-shrink: 0; }
+  .contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .54rem;
+    color: var(--tx-3);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    margin-bottom: .2rem;
+  }
+  .contact-val {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .9rem;
+    color: var(--tx-1);
+    font-weight: 400;
+    word-break: break-all;
+  }
+
+  @media (max-width: 480px) {
+    .contact-val { font-size: .82rem; }
+  }
+
+  .copy-btn {
+    width: 36px; height: 36px;
+    background: transparent;
+    border: 1px solid var(--bd);
+    color: var(--tx-3);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: .75rem;
+    transition: all .2s var(--ease);
+    flex-shrink: 0;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .copy-btn:hover { color: var(--ac); border-color: var(--bd-ac); }
+  .copy-btn.copied { color: var(--ac); border-color: var(--ac); background: var(--ac-10); }
+
+  .social-links { display: flex; gap: .5rem; flex-wrap: wrap; }
+
+  .social-btn {
+    width: 44px; height: 44px;
+    background: transparent;
+    border: 1px solid var(--bd);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .88rem;
+    color: var(--tx-3);
+    transition: all .25s var(--ease);
+  }
+  .social-btn:hover { color: var(--ac); border-color: var(--bd-ac); transform: translateY(-1px); }
+</style>

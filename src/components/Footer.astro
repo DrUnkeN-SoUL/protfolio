@@ -1,0 +1,41 @@
+---
+---
+
+<footer class="footer">
+  <div class="container footer-container">
+    <div class="footer-copy">&copy; 2026 Mathews Shaji. All rights reserved.</div>
+    <div class="footer-meta">system_uptime: active — Kochi, IN</div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--bd);
+    margin-top: 4rem;
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-copy {
+    font-family: 'DM Sans', sans-serif;
+    font-size: .78rem;
+    color: var(--tx-2);
+    font-weight: 300;
+  }
+
+  .footer-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .58rem;
+    color: var(--tx-2);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+---
+
+<section class="metrics-section">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-number">10+</div>
+        <div class="metric-label">Projects Shipped</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">3+</div>
+        <div class="metric-label">Years Experience</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">3</div>
+        <div class="metric-label">Clouds — AWS · GCP · Azure</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number">100%</div>
+        <div class="metric-label">Production Grade</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .metrics-section { padding: 0; position: relative; z-index: 10; }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 0;
+    border: 1px solid var(--bd);
+    background: var(--bd);
+    column-gap: 1px;
+  }
+
+  @media (max-width:768px) { .metrics-grid { grid-template-columns: repeat(2,1fr); row-gap: 1px; } }
+  @media (max-width:360px) { .metrics-grid { grid-template-columns: repeat(2,1fr); } }
+
+  .metric-card {
+    background: var(--bg-1);
+    padding: 2.2rem 1.75rem;
+    text-align: center;
+    transition: background .3s;
+  }
+
+  @media (max-width: 768px) {
+    .metric-card { padding: 1.75rem 1rem; }
+  }
+
+  .metric-card:hover { background: var(--bg-2); }
+
+  .metric-number {
+    font-family: 'Cormorant Garant', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 300;
+    color: var(--ac);
+    line-height: 1;
+    margin-bottom: .4rem;
+    letter-spacing: -.04em;
+  }
+
+  .metric-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .58rem;
+    color: var(--tx-2);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 480px) {
+    .metric-label { font-size: .52rem; letter-spacing: .08em; }
+  }
+</style>

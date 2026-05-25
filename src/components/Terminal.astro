@@ -1,0 +1,165 @@
+---
+---
+
+<div class="terminal-wrapper">
+  <div class="terminal-container">
+    <div class="terminal-body" id="terminal-body" aria-live="polite">
+      <div class="terminal-output term-gray"># Mathews Shaji Interactive Shell v2.0</div>
+      <div class="terminal-output term-gray"># Loading modules... done</div>
+      <div class="terminal-output term-cyan">Type <span class="term-indigo">"help"</span> to view commands.</div>
+      <div class="terminal-line">
+        <span class="terminal-prompt"><span class="term-indigo">guest</span><span class="term-gray">@dev</span> <span class="term-gray">~</span> <span class="term-yellow">❯</span></span>
+        <div class="terminal-input-wrapper">
+          <input type="text" class="terminal-input" id="terminal-input"
+            autocomplete="off" autofocus spellcheck="false" aria-label="Terminal input">
+          <span class="terminal-input-display" id="terminal-input-display"></span>
+          <span class="terminal-cursor" id="terminal-cursor"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .terminal-wrapper { width: 100%; max-width: 100%; }
+
+  .terminal-container {
+    background: #030306;
+    border: 1px solid var(--bd);
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.03);
+    transition: border-color .3s var(--ease);
+  }
+  .terminal-container:hover { border-color: var(--bd-ac); }
+  .terminal-container:focus-within { border-color: var(--bd-ac); }
+
+  @media (max-width: 768px) {
+    .terminal-container::before {
+      content: '● MATHEWS SHAJI — INTERACTIVE SHELL';
+      display: flex;
+      align-items: center;
+      padding: .6rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .55rem;
+      letter-spacing: .12em;
+      color: var(--ac-dim);
+      border-bottom: 1px solid var(--bd);
+      background: rgba(0,0,0,.4);
+    }
+  }
+
+  .terminal-body {
+    padding: 1.6rem 1.5rem 1.4rem;
+    height: 600px;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .78rem;
+    line-height: 1.72;
+    cursor: text;
+    color: #b0ada7;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media (max-width: 900px) {
+    .terminal-body { height: 420px; }
+  }
+
+  @media (max-width: 600px) {
+    .terminal-body {
+      height: 340px;
+      padding: 1.1rem 1rem 1rem;
+      font-size: .74rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .terminal-body {
+      height: 300px;
+      font-size: .7rem;
+    }
+  }
+
+  .terminal-body::-webkit-scrollbar { width: 3px; }
+  .terminal-body::-webkit-scrollbar-thumb { background: rgba(201,169,110,.15); }
+
+  .terminal-output { margin-bottom: .55rem; white-space: pre-wrap; word-break: break-word; }
+
+  .terminal-line {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    margin-top: .35rem;
+  }
+
+  .terminal-prompt { color: var(--tx-2); flex-shrink: 0; font-size: .72rem; }
+
+  @media (max-width: 480px) {
+    .terminal-prompt { font-size: .65rem; }
+  }
+
+  .term-green  { color: #28c840; }
+  .term-gray   { color: var(--tx-2); }
+  .term-cyan   { color: var(--hi); }
+  .term-indigo { color: var(--ac); }
+  .term-yellow { color: #febc2e; }
+  .term-red    { color: #ff5f57; }
+
+  .terminal-input-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex: 1;
+    min-height: 1.1em;
+  }
+
+  .terminal-input {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: transparent;
+    caret-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    z-index: 2;
+    font-size: 16px;
+  }
+
+  @media (min-width: 481px) {
+    .terminal-input { font-size: inherit; }
+  }
+
+  .terminal-input-display {
+    color: #b0ada7;
+    font-family: inherit;
+    font-size: inherit;
+    white-space: pre-wrap;
+    word-break: break-all;
+    pointer-events: none;
+  }
+
+  .terminal-ghost-text {
+    color: rgba(176, 173, 167, 0.35);
+    pointer-events: none;
+  }
+
+  .terminal-cursor {
+    display: inline-block;
+    width: 6px; height: 13px;
+    background: var(--ac);
+    margin-left: 1px;
+    vertical-align: middle;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+
+  .terminal-input:focus ~ .terminal-cursor { animation: blink .85s step-end infinite; }
+  .terminal-input:not(:focus) ~ .terminal-cursor {
+    background: transparent;
+    border: 1px solid var(--ac-dim);
+    animation: none;
+  }
+
+  @keyframes blink { 50% { opacity: 0; } }
+</style>
