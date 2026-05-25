@@ -22,6 +22,10 @@ export class Terminal {
     this.reverseSearchMatch = "";
     this.reverseSearchHistoryIndex = -1;
 
+    // Interaction & autoplay state
+    this.hasInteracted = false;
+    this.autoPlayTimeout = null;
+
     this.bindEvents();
     this.autoRunHelp();
   }
@@ -172,19 +176,33 @@ React/Next.js frontend engineering.`,
   }
 
   bindEvents() {
-    this.input.addEventListener('input', () => this.syncDisplay());
+    const markInteracted = () => {
+      this.hasInteracted = true;
+      if (this.autoPlayTimeout) {
+        clearTimeout(this.autoPlayTimeout);
+        this.autoPlayTimeout = null;
+      }
+    };
+
+    this.input.addEventListener('input', () => {
+      markInteracted();
+      this.syncDisplay();
+    });
 
     this.body.addEventListener('click', () => {
+      markInteracted();
       if (!this.isTouchDevice()) this.input.focus();
     });
 
     if (this.isTouchDevice()) {
       this.body.addEventListener('touchend', (e) => {
+        markInteracted();
         if (!e.target.closest('a')) this.input.focus();
       }, { passive: true });
     }
 
     this.input.addEventListener('keydown', (e) => {
+      markInteracted();
       // 1. Enter key
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -315,7 +333,23 @@ React/Next.js frontend engineering.`,
       } else if (this.easterEggs[cmd]) {
         this.renderOutput(this.easterEggs[cmd]);
       } else {
-        this.renderOutput(`<span class="term-gray">Command not found: </span><span style="color:var(--hi)">"${cmd}"</span><span class="term-gray"> — type </span><span class="term-yellow">help</span><span class="term-gray"> for a list.</span>`);
+        const resolvedCmd = this.resolveSmartCommand(cmd);
+        if (resolvedCmd) {
+          this.renderOutput(`<span class="term-cyan">ℹ Command not found. Automagic resolved to: </span><span class="term-yellow">"${resolvedCmd}"</span>`);
+          setTimeout(() => {
+            const result = this.commands[resolvedCmd] ? this.commands[resolvedCmd]() : this.easterEggs[resolvedCmd];
+            if (result && result !== '__CLEAR__') {
+              this.renderOutput(result);
+            } else if (result === '__CLEAR__') {
+              const active = this.input.closest('.terminal-line');
+              Array.from(this.body.children).forEach(el => {
+                if (el !== active) el.remove();
+              });
+            }
+          }, 600);
+        } else {
+          this.renderOutput(`<span class="term-gray">Command not found: </span><span style="color:var(--hi)">"${cmd}"</span><span class="term-gray"> — type </span><span class="term-yellow">help</span><span class="term-gray"> for a list.</span>`);
+        }
       }
     }
 
@@ -580,10 +614,154 @@ React/Next.js frontend engineering.`,
   autoRunHelp() {
     const delay = this.isTouchDevice() ? 800 : 1500;
     setTimeout(() => {
-      this.echoCommand('help');
-      const result = this.commands.help();
+      if (this.hasInteracted) return;
+
+      // Clear terminal prior to running initial command
+      const active = this.input.closest('.terminal-line');
+      Array.from(this.body.children).forEach(el => {
+        if (el !== active) el.remove();
+      });
+
+      this.echoCommand('whoami');
+      const result = this.commands.whoami();
       this.renderOutput(result);
       this.body.scrollTop = this.body.scrollHeight;
+
+      this.startAutomatedDemo();
     }, delay);
+  }
+
+  startAutomatedDemo() {
+    if (this.hasInteracted) return;
+
+    const sequence = ['help', 'about', 'skills', 'projects', 'contact', 'whoami'];
+    let step = 0;
+
+    const nextStep = () => {
+      if (this.hasInteracted) return;
+
+      if (step >= sequence.length) {
+        step = 0;
+      }
+
+      const cmd = sequence[step];
+      step++;
+
+      this.autoPlayTimeout = setTimeout(() => {
+        if (this.hasInteracted) return;
+
+        // Clear terminal prior to each message in auto mode
+        const active = this.input.closest('.terminal-line');
+        Array.from(this.body.children).forEach(el => {
+          if (el !== active) el.remove();
+        });
+
+        this.simulateTyping(cmd, () => {
+          nextStep();
+        });
+      }, 7000);
+    };
+
+    nextStep();
+  }
+
+  simulateTyping(text, callback) {
+    if (this.hasInteracted) return;
+    let index = 0;
+    this.input.value = '';
+    this.syncDisplay();
+
+    const typeChar = () => {
+      if (this.hasInteracted) return;
+      if (index < text.length) {
+        this.input.value += text[index];
+        this.syncDisplay();
+        index++;
+        setTimeout(typeChar, Math.random() * 50 + 50);
+      } else {
+        setTimeout(() => {
+          if (this.hasInteracted) return;
+          this.handleCommand();
+          if (callback) callback();
+        }, 700);
+      }
+    };
+
+    typeChar();
+  }
+
+  resolveSmartCommand(input) {
+    const clean = input.trim().toLowerCase();
+    if (!clean) return null;
+
+    // Direct mappings
+    const mappings = {
+      'help': 'help', 'commands': 'help', 'menu': 'help', 'info': 'help', 'list': 'help', 'options': 'help',
+      'about': 'about', 'bio': 'about', 'who': 'about', 'me': 'about', 'mathews': 'about', 'shaji': 'about', 'myself': 'about', 'summary': 'about', 'profile': 'about',
+      'skills': 'skills', 'tech': 'skills', 'stack': 'skills', 'languages': 'skills', 'frameworks': 'skills', 'technologies': 'skills', 'backend': 'skills', 'frontend': 'skills', 'cloud': 'skills', 'database': 'skills',
+      'projects': 'projects', 'builds': 'projects', 'work': 'projects', 'portfolio': 'projects', 'apps': 'projects', 'websites': 'projects',
+      'whoami': 'whoami', 'avatar': 'whoami', 'portrait': 'whoami', 'ascii': 'whoami', 'image': 'whoami', 'face': 'whoami',
+      'socials': 'socials', 'social': 'socials', 'github': 'socials', 'linkedin': 'socials', 'git': 'socials', 'connect': 'socials',
+      'contact': 'contact', 'email': 'contact', 'reach': 'contact', 'message': 'contact', 'hire': 'contact', 'job': 'contact', 'locate': 'contact', 'location': 'contact', 'phone': 'contact',
+      'resume': 'resume', 'cv': 'resume', 'experience': 'resume', 'education': 'resume', 'career': 'resume', 'history': 'resume',
+      'cloudpositive': 'cloudpositive', 'cp': 'cloudpositive',
+      'xmigrate': 'xmigrate',
+      'wms': 'wms', 'exoticgreen': 'wms',
+      'cda': 'cda', 'dcsl': 'cda',
+      'medicine': 'medicine', 'bot': 'medicine',
+      'matrix': 'matrix', 'neo': 'matrix', 'rabbit': 'matrix'
+    };
+
+    if (mappings[clean]) {
+      return mappings[clean];
+    }
+
+    // Substring match
+    for (const key in mappings) {
+      if (key.length > 2 && (clean.includes(key) || key.includes(clean))) {
+        return mappings[key];
+      }
+    }
+
+    // Levenshtein fuzzy match
+    const allTargets = Object.keys(this.commands).concat(Object.keys(this.easterEggs));
+    let bestMatch = null;
+    let minDistance = 3; // Max edits allowed
+
+    allTargets.forEach(target => {
+      const dist = this.levenshtein(clean, target);
+      if (dist < minDistance) {
+        minDistance = dist;
+        bestMatch = target;
+      }
+    });
+
+    return bestMatch;
+  }
+
+  levenshtein(a, b) {
+    const matrix = [];
+    for (let i = 0; i <= b.length; i++) {
+      matrix[i] = [i];
+    }
+    for (let j = 0; j <= a.length; j++) {
+      matrix[0][j] = j;
+    }
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        if (b.charAt(i - 1) === a.charAt(j - 1)) {
+          matrix[i][j] = matrix[i - 1][j - 1];
+        } else {
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j - 1] + 1,
+            Math.min(
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j] + 1
+            )
+          );
+        }
+      }
+    }
+    return matrix[b.length][a.length];
   }
 }
