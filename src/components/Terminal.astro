@@ -11,11 +11,18 @@
         <span class="terminal-prompt"><span class="term-indigo">guest</span><span class="term-gray">@dev</span> <span class="term-gray">~</span> <span class="term-yellow">❯</span></span>
         <div class="terminal-input-wrapper">
           <input type="text" class="terminal-input" id="terminal-input"
-            autocomplete="off" autofocus spellcheck="false" aria-label="Terminal input">
+            autocomplete="off" spellcheck="false" aria-label="Terminal input">
           <span class="terminal-input-display" id="terminal-input-display"></span>
           <span class="terminal-cursor" id="terminal-cursor"></span>
         </div>
       </div>
+    </div>
+    <div class="terminal-statusbar" id="terminal-statusbar">
+      <div class="statusbar-left">
+        <span class="statusbar-mode" id="statusbar-mode">AUTO DEMO</span>
+      </div>
+      <div class="statusbar-middle">ms-shell 2.0</div>
+      <div class="statusbar-right">utf-8</div>
     </div>
   </div>
 </div>
@@ -29,9 +36,61 @@
     overflow: hidden;
     box-shadow: 0 24px 80px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.03);
     transition: border-color .3s var(--ease);
+    position: relative;
   }
   .terminal-container:hover { border-color: var(--bd-ac); }
   .terminal-container:focus-within { border-color: var(--bd-ac); }
+
+  .terminal-statusbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20px;
+    background: #08080e;
+    border-top: 1px solid var(--bd);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--tx-2);
+    padding: 0 0.6rem;
+    user-select: none;
+    transition: all 0.3s ease;
+  }
+
+  .statusbar-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .statusbar-mode {
+    font-weight: 700;
+    font-size: 0.5rem;
+    letter-spacing: 0.05em;
+    background: #febc2e;
+    color: #030306;
+    padding: 0px 0.3rem;
+    border-radius: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+
+  .statusbar-mode.interactive {
+    background: #28c840;
+    color: #030306;
+  }
+
+  .statusbar-middle {
+    font-size: 0.54rem;
+    color: var(--tx-2);
+    opacity: 0.5;
+    letter-spacing: 0.03em;
+  }
+
+  .statusbar-right {
+    font-size: 0.54rem;
+    color: var(--tx-2);
+    opacity: 0.65;
+    letter-spacing: 0.02em;
+  }
 
   @media (max-width: 768px) {
     .terminal-container::before {
@@ -49,8 +108,8 @@
   }
 
   .terminal-body {
-    padding: 1.6rem 1.5rem 1.4rem;
-    height: 600px;
+    padding: 1.4rem 1.5rem 1.2rem;
+    height: 380px;
     overflow-y: auto;
     font-family: 'JetBrains Mono', monospace;
     font-size: .78rem;
@@ -61,12 +120,12 @@
   }
 
   @media (max-width: 900px) {
-    .terminal-body { height: 420px; }
+    .terminal-body { height: 350px; }
   }
 
   @media (max-width: 600px) {
     .terminal-body {
-      height: 340px;
+      height: 300px;
       padding: 1.1rem 1rem 1rem;
       font-size: .74rem;
     }
@@ -74,7 +133,7 @@
 
   @media (max-width: 400px) {
     .terminal-body {
-      height: 300px;
+      height: 280px;
       font-size: .7rem;
     }
   }

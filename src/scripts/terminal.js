@@ -25,6 +25,10 @@ export class Terminal {
     // Interaction & autoplay state
     this.hasInteracted = false;
     this.autoPlayTimeout = null;
+    this.idleTimeout = null;
+
+    // Tmux-style status bar elements
+    this.statusbarMode = document.getElementById('statusbar-mode');
 
     this.bindEvents();
     this.autoRunHelp();
@@ -182,6 +186,11 @@ React/Next.js frontend engineering.`,
         clearTimeout(this.autoPlayTimeout);
         this.autoPlayTimeout = null;
       }
+      if (this.statusbarMode) {
+        this.statusbarMode.classList.add('interactive');
+        this.statusbarMode.innerText = 'INTERACTIVE';
+      }
+      this.resetIdleTimer();
     };
 
     this.input.addEventListener('input', () => {
@@ -629,6 +638,29 @@ React/Next.js frontend engineering.`,
 
       this.startAutomatedDemo();
     }, delay);
+  }
+
+  resetIdleTimer() {
+    if (this.idleTimeout) {
+      clearTimeout(this.idleTimeout);
+    }
+
+    this.idleTimeout = setTimeout(() => {
+      this.hasInteracted = false;
+
+      if (this.statusbarMode) {
+        this.statusbarMode.classList.remove('interactive');
+        this.statusbarMode.innerText = 'AUTO DEMO';
+      }
+
+      // Clear terminal prior to resuming auto mode
+      const active = this.input.closest('.terminal-line');
+      Array.from(this.body.children).forEach(el => {
+        if (el !== active) el.remove();
+      });
+
+      this.startAutomatedDemo();
+    }, 20000); // 20 seconds of inactivity
   }
 
   startAutomatedDemo() {
