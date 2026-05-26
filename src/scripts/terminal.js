@@ -204,8 +204,11 @@ React/Next.js frontend engineering.`,
     });
 
     if (this.isTouchDevice()) {
-      this.body.addEventListener('touchend', (e) => {
+      // touchstart gives instant pause — no need to wait for finger-lift
+      this.body.addEventListener('touchstart', (e) => {
         markInteracted();
+      }, { passive: true });
+      this.body.addEventListener('touchend', (e) => {
         if (!e.target.closest('a')) this.input.focus();
       }, { passive: true });
     }
@@ -529,6 +532,12 @@ React/Next.js frontend engineering.`,
     const delay = this.isMobile() ? 20 : 32;
     let index = 0;
     const revealNext = () => {
+      if (this.hasInteracted) {
+        // Flush remaining lines instantly so output is visible
+        lineElements.slice(index).forEach(el => el.style.display = 'block');
+        this.body.scrollTop = this.body.scrollHeight;
+        return;
+      }
       if (index < lineElements.length) {
         lineElements[index].style.display = 'block';
         index++;
@@ -543,28 +552,31 @@ React/Next.js frontend engineering.`,
 
   renderAvatar() {
     const id = 'av-' + Date.now();
-
-    if (this.isSmallScreen()) {
-      return `
-<span class="term-indigo">Mathews Shaji — Backend-Leaning Full-Stack Engineer</span>
-<span class="term-gray">──────────────────────────────────────────────────</span>
-<span class="term-gray">Role:    </span>Backend-Leaning Full-Stack Developer
-<span class="term-gray">Stack:   </span>Python · Go · TypeScript · AWS · GCP · Azure
-<span class="term-gray">Bio:     </span>Building high-performance distributed systems.
-<span class="term-gray">──────────────────────────────────────────────────</span>
-<span class="term-gray">[Avatar unavailable on small screens — try on desktop!]</span>`;
-    }
+    // Adaptive font-size: smaller on phones so the portrait fits without
+    // horizontal scrolling; still visible at 4 px on narrow screens.
+    const fs = this.isSmallScreen() ? '3.8px' : '5.1px';
+    const lh = this.isSmallScreen() ? '4.2px' : '5.6px';
 
     setTimeout(() => {
-      const pre    = document.getElementById(id + '-pre');
-      const status = document.getElementById(id + '-status');
+      const pre = document.getElementById(id + '-pre');
+      const statusMiddle = document.querySelector('.statusbar-middle');
       if (!pre) return;
 
-      status.innerHTML = `<span class="term-indigo">Loading text portrait…</span>`;
+      // Force scroll to the top of the terminal body when rendering whoami
+      // so the header info is perfectly visible and never chopped off.
+      this.body.scrollTop = 0;
+
+      if (statusMiddle) {
+        statusMiddle.textContent = 'PORTRAIT: CONNECTING...';
+        statusMiddle.style.color = '#febc2e';
+      }
 
       fetch('/ascii-portrait.txt')
         .then(r => r.text())
         .then(text => {
+          if (statusMiddle) {
+            statusMiddle.textContent = 'PORTRAIT: RENDERING...';
+          }
           const lines = text.split('\n');
           pre.textContent = '';
           pre.style.color = 'var(--ac)';
@@ -573,33 +585,48 @@ React/Next.js frontend engineering.`,
           const tick = () => {
             if (line < lines.length) {
               pre.textContent += lines[line++] + '\n';
-              this.body.scrollTop = this.body.scrollHeight;
-              setTimeout(tick, 18);
+              // Draw top-down without auto-scrolling to the bottom to avoid
+              // pushing the header out of the view area.
+              setTimeout(tick, this.isSmallScreen() ? 10 : 18);
             } else {
-              status.innerHTML = `<span class="term-indigo">Render complete.</span>`;
+              if (statusMiddle) {
+                statusMiddle.textContent = 'PORTRAIT: RENDERED';
+                statusMiddle.style.color = '#28c840';
+                setTimeout(() => {
+                  statusMiddle.textContent = 'ms-shell 2.0';
+                  statusMiddle.style.color = '';
+                }, 3000);
+              }
             }
           };
           setTimeout(tick, 80);
         })
         .catch(() => {
-          status.innerHTML = `<span class="term-yellow">Failed to load — using fallback vector.</span>`;
+          if (statusMiddle) {
+            statusMiddle.textContent = 'PORTRAIT: FAILED';
+            statusMiddle.style.color = '#ff5f57';
+            setTimeout(() => {
+              statusMiddle.textContent = 'ms-shell 2.0';
+              statusMiddle.style.color = '';
+            }, 3000);
+          }
           const fallback = [
-            "              ⢀⣀⣀⣀⣀⣀⡀       ",
-            "          ⢀⣴⠶⠞⠛⠛⠛⠛⠳⠶⣦⡀   ",
-            "        ⢀⡾⠃⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⡀  ",
-            "       ⢠⡿⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⡄ ",
-            "       ⣾⠁⠀⠀⢀⣀⡀⠀⠀⣀⡀⠀⠀⠈⢿",
-            "      ⢹⡇⠀⠀⠀⠻⠟⠁⠀⠀⠻⠟⠀⠀⠀⠸⡏",
-            "      ⠘⣧⠀⠀⠀⠀⠀⠠⠤⠄⠀⠀⠀⠀⠀⣼⠃",
-            "       ⠘⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⠃",
-            "         ⠈⠻⢦⣀⡀⠀⠀⠀⢀⣀⡴⠟⠁  "
-          ].join('\n');
-          let line = 0; const flines = fallback.split('\n');
+            "              ⨀⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎠       ",
+            "          ⨀⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎠   ",
+            "        ⨀⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎠  ",
+            "       ⨀⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎠ ",
+            "       ⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡",
+            "      ⨀⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎠",
+            "      ⨀⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎠",
+            "       ⨀⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎠",
+            "         ⨀⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎡⎠  "
+          ];
+          const flines = fallback.join('\n').split('\n');
           pre.textContent = ''; pre.style.color = 'var(--ac-dim)';
+          let fl = 0;
           const tick = () => {
-            if (line < flines.length) {
-              pre.textContent += flines[line++] + '\n';
-              this.body.scrollTop = this.body.scrollHeight;
+            if (fl < flines.length) {
+              pre.textContent += flines[fl++] + '\n';
               setTimeout(tick, 30);
             }
           };
@@ -607,17 +634,13 @@ React/Next.js frontend engineering.`,
         });
     }, 60);
 
-    return `
-<span class="term-indigo">Mathews Shaji — Backend-Leaning Full-Stack Engineer</span>
+    return `<span class="term-indigo">Mathews Shaji — Backend-Leaning Full-Stack Engineer</span>
 <span class="term-gray">──────────────────────────────────────────────────</span>
 <span class="term-gray">Role:    </span>Backend-Leaning Full-Stack Developer
 <span class="term-gray">Stack:   </span>Python · Go · TypeScript · AWS · GCP · Azure
 <span class="term-gray">Bio:     </span>Building high-performance distributed systems.
 <span class="term-gray">──────────────────────────────────────────────────</span>
-<div id="${id}">
-  <div id="${id}-status" class="term-gray">Querying portrait core…</div>
-  <pre id="${id}-pre" style="font-family:'JetBrains Mono',monospace;font-size:6px;line-height:6.6px;white-space:pre;margin-top:.5rem;"></pre>
-</div>`;
+<div id="${id}"><pre id="${id}-pre" style="font-family:'JetBrains Mono',monospace;font-size:${fs};line-height:${lh};white-space:pre;overflow:hidden;margin:0;padding:0;border:none;outline:none;margin-top:.4rem;"></pre></div>`;
   }
 
   autoRunHelp() {
@@ -631,8 +654,11 @@ React/Next.js frontend engineering.`,
         if (el !== active) el.remove();
       });
 
-      this.echoCommand('whoami');
-      const result = this.commands.whoami();
+      // On small screens start with 'help' (faster); on larger screens
+      // run 'whoami' which fetches and renders the ASCII portrait.
+      const initCmd = this.isSmallScreen() ? 'help' : 'whoami';
+      this.echoCommand(initCmd);
+      const result = this.commands[initCmd]();
       this.renderOutput(result);
       this.body.scrollTop = this.body.scrollHeight;
 
@@ -660,29 +686,34 @@ React/Next.js frontend engineering.`,
       });
 
       this.startAutomatedDemo();
-    }, 20000); // 20 seconds of inactivity
+    }, 60000); // 60 seconds of inactivity
   }
 
   startAutomatedDemo() {
     if (this.hasInteracted) return;
 
-    const sequence = ['help', 'about', 'skills', 'projects', 'contact', 'whoami'];
+    // Per-command delay (ms the screen stays before clearing for next cmd)
+    const sequence = [
+      { cmd: 'help',     wait: 8000 },
+      { cmd: 'about',    wait: 18000 },
+      { cmd: 'skills',   wait: 16000 },
+      { cmd: 'projects', wait: 22000 },
+      { cmd: 'contact',  wait: 10000 },
+      { cmd: 'whoami',   wait: 38000 }, // portrait needs time to load + be seen
+    ];
     let step = 0;
 
     const nextStep = () => {
       if (this.hasInteracted) return;
 
-      if (step >= sequence.length) {
-        step = 0;
-      }
+      if (step >= sequence.length) step = 0;
 
-      const cmd = sequence[step];
+      const { cmd, wait } = sequence[step];
       step++;
 
       this.autoPlayTimeout = setTimeout(() => {
         if (this.hasInteracted) return;
 
-        // Clear terminal prior to each message in auto mode
         const active = this.input.closest('.terminal-line');
         Array.from(this.body.children).forEach(el => {
           if (el !== active) el.remove();
@@ -691,7 +722,7 @@ React/Next.js frontend engineering.`,
         this.simulateTyping(cmd, () => {
           nextStep();
         });
-      }, 7000);
+      }, wait);
     };
 
     nextStep();
