@@ -5,6 +5,12 @@ import { initCursor } from './cursor.js';
 import { initCracks } from './cracks.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Suppress smooth-scroll during initial load so the browser's
+  // scroll-position restoration doesn't animate from the top.
+  document.documentElement.classList.add('no-smooth-scroll');
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.documentElement.classList.remove('no-smooth-scroll');
+  }));
 
   /* ── 1. TERMINAL ───────────────────────────────────────── */
   new Terminal();
