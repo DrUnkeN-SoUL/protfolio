@@ -19,7 +19,7 @@
     </div>
     <div class="terminal-statusbar" id="terminal-statusbar">
       <div class="statusbar-left">
-        <span class="statusbar-mode" id="statusbar-mode">AUTO DEMO</span>
+        <span class="statusbar-mode" id="statusbar-mode">❐ AUTO DEMO</span>
       </div>
       <div class="statusbar-middle">ms-shell 2.0</div>
       <div class="statusbar-right">utf-8</div>
@@ -45,13 +45,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 20px;
-    background: #08080e;
-    border-top: 1px solid var(--bd);
+    height: 18px;
+    background: #06060c;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.58rem;
+    font-size: 0.52rem;
     color: var(--tx-2);
-    padding: 0 0.6rem;
+    padding: 0;
+    padding-right: 0.6rem;
     user-select: none;
     transition: all 0.3s ease;
   }
@@ -59,16 +60,21 @@
   .statusbar-left {
     display: flex;
     align-items: center;
+    height: 100%;
   }
 
   .statusbar-mode {
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 700;
-    font-size: 0.5rem;
-    letter-spacing: 0.05em;
+    font-size: 0.48rem;
+    letter-spacing: 0.04em;
     background: #febc2e;
     color: #030306;
-    padding: 0px 0.3rem;
-    border-radius: 1px;
+    padding: 0 0.55rem;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     text-transform: uppercase;
     transition: all 0.3s ease;
   }
@@ -79,16 +85,16 @@
   }
 
   .statusbar-middle {
-    font-size: 0.54rem;
+    font-size: 0.52rem;
     color: var(--tx-2);
-    opacity: 0.5;
+    opacity: 0.45;
     letter-spacing: 0.03em;
   }
 
   .statusbar-right {
-    font-size: 0.54rem;
+    font-size: 0.52rem;
     color: var(--tx-2);
-    opacity: 0.65;
+    opacity: 0.55;
     letter-spacing: 0.02em;
   }
 
@@ -109,7 +115,7 @@
 
   .terminal-body {
     padding: 1.4rem 1.5rem 1.2rem;
-    height: 380px;
+    height: 580px;
     overflow-y: auto;
     font-family: 'JetBrains Mono', monospace;
     font-size: .78rem;
@@ -120,12 +126,12 @@
   }
 
   @media (max-width: 900px) {
-    .terminal-body { height: 350px; }
+    .terminal-body { height: 480px; }
   }
 
   @media (max-width: 600px) {
     .terminal-body {
-      height: 300px;
+      height: 460px;
       padding: 1.1rem 1rem 1rem;
       font-size: .74rem;
     }
@@ -133,7 +139,7 @@
 
   @media (max-width: 400px) {
     .terminal-body {
-      height: 280px;
+      height: 420px;
       font-size: .7rem;
     }
   }

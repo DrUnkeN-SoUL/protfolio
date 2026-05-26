@@ -188,7 +188,7 @@ React/Next.js frontend engineering.`,
       }
       if (this.statusbarMode) {
         this.statusbarMode.classList.add('interactive');
-        this.statusbarMode.innerText = 'INTERACTIVE';
+        this.statusbarMode.innerText = '❐ INTERACTIVE';
       }
       this.resetIdleTimer();
     };
@@ -650,7 +650,7 @@ React/Next.js frontend engineering.`,
 
       if (this.statusbarMode) {
         this.statusbarMode.classList.remove('interactive');
-        this.statusbarMode.innerText = 'AUTO DEMO';
+        this.statusbarMode.innerText = '❐ AUTO DEMO';
       }
 
       // Clear terminal prior to resuming auto mode

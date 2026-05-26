@@ -18,8 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const h1 = nameEl.closest('h1');
     if (h1) {
       const h1Height = h1.getBoundingClientRect().height;
-      h1.style.height = h1Height + 'px';
+      h1.style.height = (h1Height + 16) + 'px';
       h1.style.overflow = 'hidden';
+      setTimeout(() => {
+        h1.style.overflow = 'visible';
+        h1.style.height = 'auto';
+      }, 1800);
     }
     const s = new Scrambler(nameEl);
     setTimeout(() => s.run(finalText), 300);
@@ -262,13 +266,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const openBtn = (btn, body) => {
       btn.setAttribute('aria-expanded', 'true');
       body.classList.add('open');
+      body.offsetHeight; // force layout recalculation so padding height is factored in!
       body.style.maxHeight = body.scrollHeight + 'px';
       
       const onTransitionEnd = (e) => {
-        if (e.propertyName === 'max-height' && btn.getAttribute('aria-expanded') === 'true') {
-          body.style.maxHeight = 'none';
+        if (e.propertyName === 'max-height') {
+          if (btn.getAttribute('aria-expanded') === 'true') {
+            body.style.maxHeight = 'none';
+          }
+          body.removeEventListener('transitionend', onTransitionEnd);
         }
-        body.removeEventListener('transitionend', onTransitionEnd);
       };
       body.addEventListener('transitionend', onTransitionEnd);
 
