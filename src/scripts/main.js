@@ -137,40 +137,52 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCopy('copy-email-btn', 'mathewsshaji@gmail.com');
   setupCopy('copy-loc-btn', 'Kochi, Kerala, India');
 
-  /* ── 6. MOBILE MENU ────────────────────────────────────── */
-  const menuToggle = document.getElementById('menu-toggle');
-  const navLinks   = document.getElementById('nav-links');
+  /* ── 6. MOBILE MENU (bottom sheet) ─────────────────────── */
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileSheet   = document.getElementById('mobile-sheet');
+  const sheetBackdrop = document.getElementById('sheet-backdrop');
 
-  if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      menuToggle.classList.toggle('active');
-      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-    });
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-    navLinks.addEventListener('click', (e) => {
-      if (e.target === navLinks) {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  }
+  const openSheet = () => {
+    mobileSheet?.classList.add('open');
+    sheetBackdrop?.classList.add('visible');
+    mobileMenuBtn?.classList.add('active');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeSheet = () => {
+    mobileSheet?.classList.remove('open');
+    sheetBackdrop?.classList.remove('visible');
+    mobileMenuBtn?.classList.remove('active');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileSheet?.classList.contains('open') ? closeSheet() : openSheet();
+  });
+
+  sheetBackdrop?.addEventListener('click', closeSheet);
+
+  document.querySelectorAll('.sheet-link').forEach(link => {
+    link.addEventListener('click', closeSheet);
+  });
+
+  // Close sheet on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeSheet();
+  });
 
   /* ── 7. SCROLL: NAVBAR + ACTIVE LINKS ─────────────────── */
   const navbar   = document.getElementById('navbar');
   const sections = document.querySelectorAll('section[id]');
   const allLinks = document.querySelectorAll('.nav-link');
+  const tabItems = document.querySelectorAll('.tab-item');
+  const sheetLinks = document.querySelectorAll('.sheet-link');
 
   const updateNav = () => {
     const y = window.scrollY;
-    navbar.classList.toggle('scrolled', y > 40);
+    if (navbar) navbar.classList.toggle('scrolled', y > 40);
 
     let current = sections[0]?.id || 'home';
     sections.forEach(sec => {
@@ -180,9 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
       current = 'contact';
     }
 
-    allLinks.forEach(link => {
-      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-    });
+    const href = `#${current}`;
+    allLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === href));
+    tabItems.forEach(tab => tab.classList.toggle('active', tab.getAttribute('href') === href));
+    sheetLinks.forEach(sl => sl.classList.toggle('active', sl.getAttribute('href') === href));
   };
 
   window.addEventListener('scroll', updateNav, { passive: true });

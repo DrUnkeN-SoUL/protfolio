@@ -104,7 +104,16 @@ body {
 }
 
 @media (max-width:1024px) {
-  body { padding-top: 56px; }
+  body { padding-top: 56px; padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+
+  /* Kill old desktop sidebar unconditionally — Astro scoped styles
+     can't reliably use the * wildcard, so this global rule wins */
+  #navbar,
+  #navbar * {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 }
 
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
