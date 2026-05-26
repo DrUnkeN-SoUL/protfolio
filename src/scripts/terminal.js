@@ -562,10 +562,6 @@ React/Next.js frontend engineering.`,
       const statusMiddle = document.querySelector('.statusbar-middle');
       if (!pre) return;
 
-      // Force scroll to the top of the terminal body when rendering whoami
-      // so the header info is perfectly visible and never chopped off.
-      this.body.scrollTop = 0;
-
       if (statusMiddle) {
         statusMiddle.textContent = 'PORTRAIT: CONNECTING...';
         statusMiddle.style.color = '#febc2e';
@@ -585,8 +581,11 @@ React/Next.js frontend engineering.`,
           const tick = () => {
             if (line < lines.length) {
               pre.textContent += lines[line++] + '\n';
-              // Draw top-down without auto-scrolling to the bottom to avoid
-              // pushing the header out of the view area.
+              // If the user has interacted, scroll to the bottom so they see the drawing.
+              // If in autoplay, do not scroll so we keep the header perfectly locked in view.
+              if (this.hasInteracted) {
+                this.body.scrollTop = this.body.scrollHeight;
+              }
               setTimeout(tick, this.isSmallScreen() ? 10 : 18);
             } else {
               if (statusMiddle) {
@@ -627,6 +626,9 @@ React/Next.js frontend engineering.`,
           const tick = () => {
             if (fl < flines.length) {
               pre.textContent += flines[fl++] + '\n';
+              if (this.hasInteracted) {
+                this.body.scrollTop = this.body.scrollHeight;
+              }
               setTimeout(tick, 30);
             }
           };
